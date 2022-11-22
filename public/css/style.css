@@ -1,23 +1,43 @@
 html {
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    
-  }
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
   
-  body {
-    margin: 0;
-  }
+}
+
+body {
+  margin: 0;
+}
+
+body {
+  background-image: url("../Assets/landscape-minimal-stars-cold-5k-817931564");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
   
-  main {
-    display: block;
-  }
-  
-  h2 {
-    font-size: 3em;
-    margin: 0.67em 0;
-  }
-  
-  h2 {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
+h1 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  margin-bottom: 100px;
+}
+
+
+h2 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: none;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  margin-left: 43%;
+  margin-right: 43%;
+}
