@@ -13,11 +13,18 @@ html {
   }
   
   h2 {
-    font-size: 3em;
+    font-size: 1em;
     margin: 0.67em 0;
   }
   
-  h2 {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
+  label {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:;
+    font: .9rem 'Fira Sans', sans-serif;
+}
+
+input[type='submit'],
+label {
+    margin-top: 1rem;
+}
