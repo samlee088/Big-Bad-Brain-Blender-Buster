@@ -1,0 +1,23 @@
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  main {
+    display: block;
+  }
+  
+  h2 {
+    font-size: 3em;
+    margin: 0.67em 0;
+  }
+  
+  h2 {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
