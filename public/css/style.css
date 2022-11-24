@@ -1,4 +1,5 @@
 html {
+<<<<<<< HEAD
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     
@@ -45,3 +46,29 @@ label {
     cursor: pointer;
 
 }
+=======
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  
+}
+
+body {
+  margin: 0;
+}
+
+body {
+  background-image: url("../Assets/landscape-minimal-stars-cold-5k-817931564");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+  
+  h2 {
+    font-size: 3em;
+    margin: 0.67em 0;
+  }
+  
+  h2 {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+>>>>>>> 7520f4480261937715f90be7af70e810d4879512
