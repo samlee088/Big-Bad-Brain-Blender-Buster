@@ -5,26 +5,43 @@ html {
   }
   
   body {
-    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 5%;
+    margin-top: auto;
   }
   
   main {
     display: block;
+    flex-wrap: wrap;
+    margin-left: 10px;
+    justify-content: center;
+    
+
   }
   
   h2 {
+    display: flex;
+    flex-wrap: wrap;
     font-size: 1em;
-    margin: 0.67em 0;
+    justify-content: center;
+    color: rgb(222, 10, 10);
   }
   
   label {
     display: flex;
     flex-wrap: wrap;
-    justify-content:;
+    margin-left: 0px;
     font: .9rem 'Fira Sans', sans-serif;
-}
+
+  }
+
 
 input[type='submit'],
 label {
     margin-top: 1rem;
+    box-shadow: 10px;
+    cursor: pointer;
+
 }
