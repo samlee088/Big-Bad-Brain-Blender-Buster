@@ -1,8 +1,14 @@
 const router = require('express').Router();
+const Questions = require('../models/Questions');
 
-router.get('/', async (req, res) => {
-  // Send the rendered Handlebars.js template back as the response
-  res.render('homepage');
-});
+
+
+const apiRoutes = require('./api');
+const homeRoutes = require('./homeRoutes');
+
+router.use('/', homeRoutes);
+router.use('/quiz', apiRoutes);
+
+
 
 module.exports = router;
