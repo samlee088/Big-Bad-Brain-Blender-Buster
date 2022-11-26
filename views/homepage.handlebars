@@ -1,39 +1,42 @@
-<div class="row align-center mb-5">
+  <div class="row align-center mb-5">
   <div class="col-md-6">
     <!-- Call the helper function with triple brackets to render the span as HTML -->
-    <h2>{{{get_emoji}}} Login to see the highest score  </h2>
   </div>
   <div class="col-md-6">
     <h3><a href=></a></h3>
-    <div>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username">
+<section class="question">
+  <label for="drop-down">Choose Category: 
+   <select name="drop-down" id="drop-down">
+   <option value="his">History</option>
+   <option value="geo">Geography</option>
+   <option value="sci">Science</option>
+   <option value="spe">Spelling</option>
+   <option value="vid">Video Game</option>
+   <option value="mov">Movies</option>
+   <option value="art">Artists</option>
+   <option value="fam">Famouse People/celebreties</option>
+   <option value="law">Law</option>
+   <option value="ran">Random</option>
+   </select>
+  </label>
+</section>
+<section class="number-of-ques">
+   <label for="drop-downs"> Pick The Set Of Questions:  
+    <select name="drop-down" id="drop-downs">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
 
-    <label for="pass">Password (8 characters minimum):</label>
-    <input type="password" id="pass" name="password"
-           minlength="8" required>
+    </select>
+   </label>
+</section>
+<section class="start">
+  <button class="start">Start Quiz</button>
+</section>
+<section class="highscore">
+  <button class="score">View Highscors</button>
+</section>
 </div>
-
-<input type="submit" value="Login">
-<span> Or </span>
-<input type="submit" value="Sign up">
-
-
-  </div>
-</div>
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2>{{{get_emoji}}} Test</h2>
-  </div>
-  <div class="col-md-6">
-    <h3><a href=></a></h3>
-  </div>
-</div>
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2>{{{get_emoji}}} Test</h2>
-  </div>
-  <div class="col-md-6">
-    <h3><a href=></a></h3>
-  </div>
 </div>
