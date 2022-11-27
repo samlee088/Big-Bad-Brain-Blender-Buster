@@ -15,27 +15,97 @@ router.get('/', async (req,res) => {
         //     category: 'General Knowledge'
         //   }
         // })
+
         const minValue = await Questions.min("id", {
           where: {
-            category: 'General Knowledge'
+            // category: req.body
+            category: 'General knowledge'
           }
         })
   
-      //   const maxValue = await Questions.max("id", {
-      //     where: {
-      //       category: 'General knowledge'
-      //     }
-      //   }) 
+        console.log(req.body);
+
+        const maxValue = await Questions.max("id", {
+          where: {
+            category: 'General knowledge'
+          }
+        }) 
   
-      // res.status(200).json(`min value = ${minValue} max value = ${maxValue} blah blah blah`);
+      res.status(200).json(`min value = ${minValue} max value = ${maxValue} blah blah blah`);
       
-      res.redirect(`/quiz/questions/${minValue}`)
+      // res.redirect(`/quiz/questions/${minValue}`)
 
     } catch (err) {
       res.status(500).json(err);
     }
   
 });
+
+
+router.post('/', async (req,res) => {
+  try{
+
+      const minValue = await Questions.min("id", {
+        where: {
+          category: (req.body.categorySelection)
+        }
+      })
+
+      // console.log(minValue);
+      
+      // const maxValue = await Questions.max("id", {
+      //   where: {
+      //     category: 'General knowledge'
+      //   }
+      // }) 
+
+    // res.status(200).json(`min value = ${minValue} max value = ${maxValue} blah blah blah`);
+    
+    res.status(200).json(minValue);
+    
+    // res.redirect(`/api/questions/${minValue}`)
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+});
+
+//back up copy
+// router.get('/', async (req,res) => {
+//   try{
+//       // const quizData = await db.quizzes.findAll({
+//       //   attributes: [[
+//       //     sequelize.fn('min', sequelize.col("id"))
+          
+//       //   ]],
+//       //   raw: true,
+//       //   where: {
+//       //     category: 'General Knowledge'
+//       //   }
+//       // })
+//       const minValue = await Questions.min("id", {
+//         where: {
+//           category: req.body
+//         }
+//       })
+
+//       const maxValue = await Questions.max("id", {
+//         where: {
+//           category: 'General knowledge'
+//         }
+//       }) 
+
+//     res.status(200).json(`min value = ${minValue} max value = ${maxValue} blah blah blah`);
+    
+//     // res.redirect(`/quiz/questions/${minValue}`)
+
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+
+// });
+
 
 router.get('/:id', async (req,res) => {
 
@@ -81,12 +151,13 @@ router.get('/:id', async (req,res) => {
 
 //   try{
  
-//     // const maxValue = await Questions.max("id", {
-//     //   where: {
-//     //     category: 'General knowledge'
-//     //   }
-//     // }) 
+//     const maxValue = await Questions.max("id", {
+//       where: {
+//         category: 'General knowledge'
+//       }
+//     }) 
 
+  
 //   res.status(200).json({message:"working checkMax"});
 
 //   } catch(err) {
@@ -95,6 +166,25 @@ router.get('/:id', async (req,res) => {
 
 // })
 
+router.post('/questionArray', async(req, res) => {
 
+  try{
+ 
+    const questionArray = await Questions.findAll({
+      where: {
+        category: req.body.categoryID
+      },
+      attributes: ['id']
+      
+    }) 
+
+  
+  res.status(200).json(questionArray);
+
+  } catch(err) {
+    res.status(500).json({message: 'unable to get max value'});
+  }
+
+})
 
   module.exports = router;

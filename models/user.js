@@ -22,7 +22,7 @@ User.init(
         autoIncrement: true
     },
     // define a username column
-    username: {
+    userName: {
         type: DataTypes.STRING,
         allowNull:false,
         unique: true
@@ -55,7 +55,7 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user'
+    modelName: 'users'
   }
 );
 
