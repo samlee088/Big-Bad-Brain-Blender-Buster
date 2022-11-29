@@ -1,47 +1,96 @@
-  <div class="row align-center mb-5">
-  <div class="col-md-6">
-    <!-- Call the helper function with triple brackets to render the span as HTML -->
+<form class="p-3 text-center">
+  <div class="form-group row-md-3 d-flex justify-content-around">
+    <div class="form-group">
+      <label for="category">Choose a category:</label>
+      <select id="inputCategory" class="form-control text-center">
+        <option selected>Select...</option>
+        <option value="his">History</option>
+        <option value="geo">Geography</option>
+        <option value="sci">Science</option>
+        <option value="spe">Spelling</option>
+        <option value="vid">Video Game</option>
+        <option value="mov">Movies</option>
+        <option value="art">Artists</option>
+        <option value="fam">Famous People/celebrities</option>
+        <option value="law">Law</option>
+        <option value="ran">Random</option>
+      </select>
+    </div>
   </div>
-  <div class="col-md-6">
+  <div class="form-group row-md-3 d-flex justify-content-around">
+    <div>
+      <label for="difficulty">Difficulty:</label>
+      <select id="inputDifficulty" class="form-control text-center ">
+        <option selected>Select...</option>
+        <option value="easy">Easy</option>
+        <option value="med">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+    <div>
+      <label for="difficulty">Questions:</label>
+      <select id="inputDifficulty" class="form-control text-center">
+        <option selected>Select...</option>
+        <option value="five">5</option>
+        <option value="ten">10</option>
+        <option value="fifteen">15</option>
+        <option value="twenty">20</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group d-flex justify-content-around">
+    <div>
+      <button type="submit" class="btn btn-dark btn-md">High Score</button>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-dark btn-md">Start</button>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-dark btn-md">Log Out</button>
+    </div>
+  </div>
+</form>
+
+{{!-- <div>
+  <div>
     <h3><a href=></a></h3>
     <section class="question">
-      <label for="drop-down">Choose Category: 
-        <select name="drop-down" id="categorySelect">
-          <option value="Arts & Literature">Arts and Literature</option>
-          <option value="Film & TV">Film and TV</option>
-          <option value="Food & Drink">Food and Drink</option>
-          <option value="General Knowledge">General Knowledge</option>
-          <option value="Geography">Geography</option>
-          <option value="History">History</option>
-          <option value="Music">Music</option>
-          <option value="Science">Science</option>
-          <option value="Society & Culture">Society and Culture</option>
-          <option value="Sport & Leisure">Sport and Leisure</option>
+      <label for="drop-down">Choose Category:
+        <select name="drop-down" id="drop-down">
+          <option value="nothing" hidden></option>
+          <option value="his">History</option>
+          <option value="geo">Geography</option>
+          <option value="sci">Science</option>
+          <option value="spe">Spelling</option>
+          <option value="vid">Video Game</option>
+          <option value="mov">Movies</option>
+          <option value="art">Artists</option>
+          <option value="fam">Famous People/celebrities</option>
+          <option value="law">Law</option>
+          <option value="ran">Random</option>
         </select>
       </label>
     </section>
-<section class="number-of-ques">
-   <label for="drop-downs"> Pick The Set Of Questions:  
-    <select name="drop-down" id="drop-downs">
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="15">15</option>
-      <option value="20">20</option>
-      <option value="25">25</option>
+    <section>
+      <label for="drop-downs"> Pick The Set Of Questions:
+        <select name="drop-down" id="drop-downs">
+          <option value="nothing" hidden></option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="25">25</option>
 
-    </select>
-   </label>
-</section>
-<section class="start">
-  <button class="startButton">Start Quiz</button>
-</section>
-<section class="scores">
-  <button class="score">View Scores</button>
-</section>
-</div>
-</div>
+        </select>
+      </label>
+    </section>
+    <section class="start">
+      <button class="start">Start Quiz</button>
+    </section>
+    <section class="highscore">
+      <button class="score">View Highscors</button>
+    </section>
+  </div>
+</div> --}}
 
-<script src="/js/script.js"></script>
-
-
-
+<script src="/public/js/script.js"></script>

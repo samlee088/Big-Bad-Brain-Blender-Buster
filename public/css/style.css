@@ -39,6 +39,7 @@ h2 {
   height: 0;
   overflow: visible;
 }
+
 h3 {
   display: flex;
   flex-wrap: wrap;
@@ -46,9 +47,10 @@ h3 {
   font-size: 3em;
 
 }
+
 h4 {
   margin-top: 50%;
-  color:whitesmoke;
+  color: whitesmoke;
 }
 
 label {
@@ -67,10 +69,11 @@ label {
   cursor: pointer;
 
 }
-.start{
+
+.start {
   margin-top: 2%;
 }
 
 .score {
-margin-top: 10%;
+  margin-top: 10%;
 }
