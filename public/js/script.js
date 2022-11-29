@@ -48,6 +48,7 @@ async function submitAnswer(event) {
 
 
 async function startQuiz() {
+    console.log("start quiz function called");
 
     const categorySelection = document.querySelector('#categorySelect').value;
 
@@ -80,11 +81,11 @@ async function startQuiz() {
         },
     })
 
-    const quizRenderResults = await getQuizData.json();
-    console.log(quizRenderResults);
+    const quizDataGrab = await getQuizData.json();
+    console.log(quizDataGrab);
 
 
-    location.href = `/api/questions/${quizRenderResults}`;
+    location.href = `/api/questions/${quizDataGrab}`;
 
     // const renderQuiz = await fetch(`/api/questions/${quizRenderResults}`, {
     //     method: 'GET',
