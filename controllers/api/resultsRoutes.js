@@ -43,7 +43,19 @@ router.post('/', async(req, res) =>  {
     }
 })
 
+router.delete('/', async(req,res) => {
+    
+    try{ 
+        const clearGuessesTable = await Guesses.destroy({
+            truncate: true
+        });
 
+        res.status(200).json({message:'Success with clearing out guesses table'});
+
+    } catch(err) {
+        res.status(500).json(err);
+    }
+})
 
 
 module.exports = router;

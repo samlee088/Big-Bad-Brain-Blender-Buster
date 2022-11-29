@@ -53,17 +53,24 @@ let categories = [category one, category two]
 
 async function fetchQuestions() {
 
-let categories = ['&categories=food_and_drink','&categories=general_knowledge','&categories=society_and_culture'];
+// let categories = ['&categories=arts_and_literature', '&categories=film_and_tv', '&categories=food_and_drink', '&categories=general_knowledge', '&categories=geography', '&categories=history', '&categories=music', '&categories=science', '&categories=society_and_culture','&categories=sport_and_leisure'];
+
+// let categories = ['arts_and_literature', 'film_and_tv', 'food_and_drink', '&general_knowledge', 'geography', 'history', 'music', 'science', 'society_and_culture','sport_and_leisure'];
+
+let categories = ['arts_and_literature', 'film_and_tv', 'food_and_drink', 'general_knowledge', 'geography', 'history', 'music', 'science', 'society_and_culture','sport_and_leisure'];
+
 let difficulty = ['&difficulty=easy','&difficulty=medium','&difficulty=hard'];
 
 //seed for grabbing the questions from API call
   for (let i = 0; i < categories.length; i++ ) {
 
-    let urlEasyQuestions = 'https://the-trivia-api.com/api/questions?limit=2&difficutly=easy'
+    let urlEasyQuestions = 'https://the-trivia-api.com/api/questions?limit=5&difficutly=easy&categories='
     console.log(`${urlEasyQuestions}${categories[i]}`)
+
     const easyQuestions= await axios.get(`${urlEasyQuestions}${categories[i]}`);
     console.log(easyQuestions.data);
-      const scrubbedEasyQuestions = easyQuestions.data.map((a) => {
+
+      const scrubbedEasyQuestions = await easyQuestions.data.map((a) => {
         let answersArray = [a.correctAnswer].concat(a.incorrectAnswers);
         let sortedAnswerArray = answersArray.sort();
         
@@ -84,10 +91,10 @@ let difficulty = ['&difficulty=easy','&difficulty=medium','&difficulty=hard'];
       returning: true,
     })
     
-    const newCategories = await Categories.bulkCreate('reference',{
-      individualHooks: true,
-      returning: true, 
-    });
+    // const newCategories = await Categories.bulkCreate('reference',{
+    //   individualHooks: true,
+    //   returning: true, 
+    // });
 
    
   }

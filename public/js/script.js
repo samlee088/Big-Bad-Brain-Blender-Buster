@@ -1,5 +1,7 @@
 document.querySelectorAll('.selectedAnswer').forEach(e => e.addEventListener('click', submitAnswer));
 
+document.querySelector('.startButton').addEventListener('click', startQuiz);
+
 
 console.log('script javascript correctly linked');
 
@@ -13,7 +15,7 @@ async function submitAnswer(event) {
     console.log(question_id);
 
 
-    const response = await fetch(`/quiz/scores`, {
+    const response = await fetch(`/api/scores`, {
         method: 'POST',
         body: JSON.stringify({questionGuess, question_id}),
         headers: {
@@ -21,7 +23,7 @@ async function submitAnswer(event) {
         },
     })
 
-    const maxQuestionId = await fetch('/quiz/maximum', {
+    const maxQuestionId = await fetch('/api/maximum', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -34,20 +36,64 @@ async function submitAnswer(event) {
     console.log(maxQuestionIdReturn);
 
     if(question_id >= maxQuestionIdReturn) {
-        document.location.replace(`/quiz/results`)
+        document.location.replace(`/api/results`)
     } else {
         const next_question_id = Number(question_id) + 1
-        document.location.replace(`/quiz/questions/${next_question_id}`);
+        document.location.replace(`/api/questions/${next_question_id}`);
     }
 
-
-  
 }
 
 
 
 
+async function startQuiz() {
+    console.log("start quiz function called");
 
+    const categorySelection = document.querySelector('#categorySelect').value;
+
+
+    console.log(categorySelection);
+
+    // const quizRender = await fetch(`/api/questions`, {
+    //     method: 'GET',
+    //     body: JSON.stringify({categorySelection}),
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    // })
+
+    const clearGuesses = await fetch(`/api/results`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+
+
+
+
+    const getQuizData = await fetch(`/api/questions`, {
+        method: 'POST',
+        body: JSON.stringify({categorySelection}),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+
+    const quizDataGrab = await getQuizData.json();
+    console.log(quizDataGrab);
+
+
+    location.href = `/api/questions/${quizDataGrab}`;
+
+    // const renderQuiz = await fetch(`/api/questions/${quizRenderResults}`, {
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     }
+    // })
+}
 
 
 
