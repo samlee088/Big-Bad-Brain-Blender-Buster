@@ -1,12 +1,16 @@
-<div class>
+<div class="quizSection">
 
-    <h2>{{question}}</h2>
-    <div>
-        <button class="selectedAnswer" data-id="{{answerOne}}" question-id="{{id}}" category-id="{{category}}"> {{answerOne}} </button>
-        <button class="selectedAnswer" data-id="{{answerTwo}}" question-id="{{id}}" category-id="{{category}}"> {{answerTwo}}  </button>
-        <button class="selectedAnswer" data-id="{{answerThree}}" question-id="{{id}}" category-id="{{category}}"> {{answerThree}}</button>
-        <button class="selectedAnswer" data-id="{{answerFour}}" question-id="{{id}}" category-id="{{category}}"> {{answerFour}}</button>
-    </div>
+{{!-- <body> --}}
+    <section class="question-container">
+        <div class="question-section">{{question}}</div>
+            <div class="answer-grid">
+                <button class="selectedAnswer" data-id="{{answerOne}}" question-id="{{id}}" category-id="{{category}}"> {{answerOne}} </button>
+                <button class="selectedAnswer" data-id="{{answerTwo}}" question-id="{{id}}" category-id="{{category}}"> {{answerTwo}}  </button>
+                <button class="selectedAnswer" data-id="{{answerThree}}" question-id="{{id}}" category-id="{{category}}"> {{answerThree}}</button>
+                <button class="selectedAnswer" data-id="{{answerFour}}" question-id="{{id}}" category-id="{{category}}"> {{answerFour}}</button>
+            </div>
+    </section>
+{{!-- </body> --}}
 
 <script src="/js/question.js"></script>
 
