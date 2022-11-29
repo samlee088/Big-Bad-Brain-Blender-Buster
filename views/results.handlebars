@@ -1,11 +1,11 @@
 
-
+<section class="resultsPage">
     {{#each results as |result| }}
-    <h2>Question: {{result.quiz.question}} </h2>
-    <h3>Selected: {{result.questionGuess}} </h3>
-    <h3>Correct Answer: {{result.quiz.correctAnswer}} </h3>
+    <div class="questionResult">Question: {{result.quiz.question}} </div>
+    <div class="selectedAnswer">Selected: {{result.questionGuess}} </div>
+    <div class="correctAnswer">Correct Answer: {{result.quiz.correctAnswer}} </div>
     {{/each}}
-  
+</section>
 
 
 
