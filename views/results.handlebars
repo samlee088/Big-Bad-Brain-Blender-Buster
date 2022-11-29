@@ -1,4 +1,5 @@
 
+
 <section class="resultsPage">
     {{#each results as |result| }}
     <div class="questionResult">Question: {{result.quiz.question}} </div>
@@ -8,4 +9,11 @@
 </section>
 
 
+
+
+{{#each results as |result| }}
+<h2>Question: {{result.quiz.question}} </h2>
+<h3>Selected: {{result.questionGuess}} </h3>
+<h3>Correct Answer: {{result.quiz.correctAnswer}} </h3>
+{{/each}}
 

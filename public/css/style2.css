@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --teal: #61eada;
+    --lightPurple: #ff99ff;
+    --darkPurple: #4d0099;
+    --lightgrey: #f2f2f2;
+}
+
+header {
+    text-align: center;
+    background-image: linear-gradient(to bottom right, var(--lightPurple), var(--teal), var(--lightPurple));
+}
+
+body {
+    min-height: 100vh;
+    background-image: url("../Assets/landscape-minimal-stars-cold-5k-817931564");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+form {
+    margin: 5% auto;
+    width: 50%;
+    background-color: var(--lightgrey);
+    border-radius: 25px;
+}
+
+footer {
+    padding-right: 2%;
+    text-align: right;
+    position: sticky;
+    top: 100%;
+    background-image: linear-gradient(to bottom right, var(--lightPurple), var(--teal));
+}
+
+span {
+    color: var(--darkPurple);
+}
+
+.card2 {
+    width: 25%;
+}

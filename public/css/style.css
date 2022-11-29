@@ -40,7 +40,11 @@ h2 {
   overflow: visible;
 }
 
+
 .mainHeader {
+
+h3 {
+
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -49,6 +53,7 @@ h2 {
   font-size: 3em;
 }
 
+
 /* h3 {
   display: flex;
   flex-wrap: wrap;
@@ -56,6 +61,8 @@ h2 {
   font-size: 3em;
 
 } */
+
+
 
 h4 {
   margin-top: 50%;
@@ -85,6 +92,7 @@ label {
 
 .score {
   margin-top: 10%;
+
 }
 
 .quizSection {
@@ -219,4 +227,6 @@ label {
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+=======
+
 }
