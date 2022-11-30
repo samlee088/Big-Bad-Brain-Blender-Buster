@@ -1,10 +1,6 @@
-document.querySelectorAll('.selectedAnswer').forEach(e => e.addEventListener('click', submitAnswer));
-
 document.querySelector('.startButton').addEventListener('click', startQuiz);
 
-
 console.log('script javascript correctly linked');
-
 
 async function submitAnswer(event) {
     
@@ -44,10 +40,7 @@ async function submitAnswer(event) {
 
 }
 
-
-
-
-async function startQuiz() {
+async function startQuiz() {    
     console.log("start quiz function called");
 
     const categorySelection = document.querySelector('#categorySelect').value;
@@ -70,9 +63,6 @@ async function startQuiz() {
         },
     })
 
-
-
-
     const getQuizData = await fetch(`/api/questions`, {
         method: 'POST',
         body: JSON.stringify({categorySelection}),
@@ -84,15 +74,15 @@ async function startQuiz() {
     const quizDataGrab = await getQuizData.json();
     console.log(quizDataGrab);
 
-
     location.href = `/api/questions/${quizDataGrab}`;
-
+    
     // const renderQuiz = await fetch(`/api/questions/${quizRenderResults}`, {
     //     method: 'GET',
     //     headers: {
     //         'Content-Type': 'application/json',
     //     }
     // })
+    
 }
 
 
