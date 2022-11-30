@@ -9,16 +9,29 @@ async function submitAnswer(event) {
     const questionGuess = event.target.getAttribute('data-id');
     console.log(questionGuess);
 
-    const question_id = event.target.getAttribute('question-id');
-    console.log(question_id);
+    const questionId = event.target.getAttribute('question-id');
+    console.log(questionId);
 
     const categoryID = event.target.getAttribute('category-id');
     console.log(categoryID);
 
+    const correctAnswer = event.target.getAttribute('correctAnswer-id');
+    console.log(correctAnswer);
 
+
+    let correctGuess;
+
+    if(questionGuess == correctAnswer) {
+        correctGuess = 1
+    } else {
+        correctGuess = 0
+    }
+    
+
+    
     const response = await fetch(`/api/results`, {
         method: 'POST',
-        body: JSON.stringify({questionGuess, question_id}),
+        body: JSON.stringify({questionGuess, questionId, correctGuess}),
         headers: {
             'Content-Type': 'application/json',
         },
@@ -26,13 +39,6 @@ async function submitAnswer(event) {
 
     const responseresults = await response.json();
     console.log(responseresults);
-    
-    // const maxQuestionId = await fetch('/api/maximum', {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    // })
     
     const allSelectedCategoryQuestionIds = await fetch('/api/questions/questionArray', {
         method: 'POST',
@@ -61,15 +67,13 @@ async function submitAnswer(event) {
 
                 let nextQuestionIdentity = questionArray[i+1].id
 
-                // let nextQuestionIdentity = questionArray[i+1].id == undefined ? questionArray[i+1].id : 'lastQuestion';
-
                 return nextQuestionIdentity
             }
             
         }
     }
     
-    let determineNextQuestion = await queryNextQuestion(question_id, currentAllQuestionList);
+    let determineNextQuestion = await queryNextQuestion(questionId, currentAllQuestionList);
 
     console.log(determineNextQuestion);
 
@@ -82,18 +86,9 @@ async function submitAnswer(event) {
         document.location.replace(`/api/questions/${determineNextQuestion}`)
 
     }
-    // const maxQuestionIdReturn = await maxQuestionId.json();
 
-    // console.log(maxQuestionId);
-    // console.log(maxQuestionIdReturn);
 
-    // if(question_id >= maxQuestionIdReturn) {
-    //     document.location.replace(`/api/results`)
-    // } else {
-    //     const next_question_id = Number(question_id) + 1
-    //     document.location.replace(`/api/questions/${next_question_id}`);
-    // }
-
+    
 }
 
 

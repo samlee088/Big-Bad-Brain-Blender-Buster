@@ -53,6 +53,10 @@ Questions.init(
             type: DataTypes.STRING,
             allowNull:false
         },
+        difficulty: {
+            type: DataTypes.STRING,
+            allowNull:false
+        },
 
     },
     {

@@ -1,6 +1,5 @@
 const axios = require('axios');
 const sequelize = require('../config/connection');
-const Categories = require('../models/Categories');
 const Questions = require('../models/Questions')
 
 
@@ -50,6 +49,10 @@ let categories = [category one, category two]
 }
  */
 
+// let difficulty = ['&difficulty=easy','&difficulty=medium','&difficulty=hard'];
+let difficulty = ['&difficulty=easy','&difficulty=hard'];
+let categories = ['arts_and_literature', 'film_and_tv', 'food_and_drink', 'general_knowledge', 'geography', 'history', 'music', 'science', 'society_and_culture','sport_and_leisure'];
+let urlQuestions = 'https://the-trivia-api.com/api/questions?limit=5&categories='
 
 async function fetchQuestions() {
 
@@ -57,46 +60,50 @@ async function fetchQuestions() {
 
 // let categories = ['arts_and_literature', 'film_and_tv', 'food_and_drink', '&general_knowledge', 'geography', 'history', 'music', 'science', 'society_and_culture','sport_and_leisure'];
 
-let categories = ['arts_and_literature', 'film_and_tv', 'food_and_drink', 'general_knowledge', 'geography', 'history', 'music', 'science', 'society_and_culture','sport_and_leisure'];
+// let categories = ['arts_and_literature', 'film_and_tv', 'food_and_drink', 'general_knowledge', 'geography', 'history', 'music', 'science', 'society_and_culture','sport_and_leisure'];
 
-let difficulty = ['&difficulty=easy','&difficulty=medium','&difficulty=hard'];
+// let categories = ["arts_and_literature,film_and_tv,food_and_drink,general_knowledge,geography,history,music,society_and_culture,sport_and_leisure,science"]
+
+// https://the-trivia-api.com/api/questions?categories=arts_and_literature,film_and_tv,food_and_drink,general_knowledge,geography,history,music,society_and_culture,sport_and_leisure,science&limit=5
+
+
+// let difficulty = ['&difficulty=easy','&difficulty=medium','&difficulty=hard'];
+
 
 //seed for grabbing the questions from API call
-  for (let i = 0; i < categories.length; i++ ) {
+  for (let i = 0; i < difficulty.length; i++ ) {
 
-    let urlEasyQuestions = 'https://the-trivia-api.com/api/questions?limit=5&difficutly=easy&categories='
-    console.log(`${urlEasyQuestions}${categories[i]}`)
+    for (let j=0; j< categories.length; j++) {
+      
+      console.log(`${urlQuestions}${categories}${difficulty[i]}`)
 
-    const easyQuestions= await axios.get(`${urlEasyQuestions}${categories[i]}`);
-    console.log(easyQuestions.data);
+      const QuestionsRetreival= await axios.get(`${urlQuestions}${categories[j]}${difficulty[i]}`);
+      console.log(QuestionsRetreival.data);
 
-      const scrubbedEasyQuestions = await easyQuestions.data.map((a) => {
-        let answersArray = [a.correctAnswer].concat(a.incorrectAnswers);
-        let sortedAnswerArray = answersArray.sort();
-        
-        return {question: a.question,
-                answerOne: sortedAnswerArray[0],
-                answerTwo: sortedAnswerArray[1],
-                answerThree: sortedAnswerArray[2],
-                answerFour: sortedAnswerArray[3],
-                correctAnswer: a.correctAnswer,
-                category: a.category,
-        }
+        const scrubbedQuestions = await QuestionsRetreival.data.map((a) => {
+          let answersArray = [a.correctAnswer].concat(a.incorrectAnswers);
+          let sortedAnswerArray = answersArray.sort();
+
+          
+            return {question: a.question,
+                    answerOne: sortedAnswerArray[0],
+                    answerTwo: sortedAnswerArray[1],
+                    answerThree: sortedAnswerArray[2],
+                    answerFour: sortedAnswerArray[3],
+                  correctAnswer: a.correctAnswer,
+                  category: a.category,
+                  difficulty: a.difficulty,
+              }
+        })
+          console.log(scrubbedQuestions)
+          await sequelize.sync({ force:false});
+
+      const newQuestions = await Questions.bulkCreate(scrubbedQuestions, {
+        individualHooks: true,
+        returning: true,
       })
-    console.log(scrubbedEasyQuestions)
-    await sequelize.sync({ force:false});
+    }
 
-    const newQuestions = await Questions.bulkCreate(scrubbedEasyQuestions, {
-      individualHooks: true,
-      returning: true,
-    })
-    
-    // const newCategories = await Categories.bulkCreate('reference',{
-    //   individualHooks: true,
-    //   returning: true, 
-    // });
-
-   
   }
   process.exit(0);
 }

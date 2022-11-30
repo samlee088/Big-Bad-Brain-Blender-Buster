@@ -1,6 +1,12 @@
 
 
 <section class="resultsPage">
+    
+    {{#each resultsArr as |userData|}}
+    <h1> {{userData.userName}} {{userData.correctGuesses}} / {{userData.totalGuesses}}</h1>
+    <br>
+    {{/each}}
+
     {{#each results as |result| }}
     <div class="questionResult">Question: {{result.quiz.question}} </div>
     <div class="selectedAnswer">Selected: {{result.questionGuess}} </div>
