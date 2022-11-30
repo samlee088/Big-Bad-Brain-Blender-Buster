@@ -4,15 +4,15 @@ const withAuth = require('../../utils/auth')
 
 
 
-router.post('/', async (req,res) => {
-  try{
+router.post('/', async (req, res) => {
+  try {
 
-      const minValue = await Questions.min("id", {
-        where: {
-          category: (req.body.categorySelection)
-        }
-      })
-    
+    const minValue = await Questions.min("id", {
+      where: {
+        category: (req.body.categorySelection)
+      }
+    })
+
     res.status(200).json(minValue);
 
   } catch (err) {
@@ -22,19 +22,19 @@ router.post('/', async (req,res) => {
 });
 
 
-router.get('/:id', withAuth,  async (req,res) => {
+router.get('/:id', async (req, res) => {
 
-  try{
+  try {
 
     const quizData = await Questions.findByPk(req.params.id, {
       attributes: {
         // include: ['question', 'answerOne', 'answerTwo', 'answerThree', 'answerFour', 'correctAnswer'],
         // exclude: ['category', 'createdAt', 'updatedAt']
-        
+
       }
     })
 
-    const quiz = quizData.get({plain:true});
+    const quiz = quizData.get({ plain: true });
 
     res.render('quiz', {
       ...quiz,
@@ -43,31 +43,31 @@ router.get('/:id', withAuth,  async (req,res) => {
     })
     // res.status(200).json(quizData);
 
-  } catch(err) {
+  } catch (err) {
     res.status(500).json(err);
   }
 
 })
 
-router.post('/questionArray', async(req, res) => {
+router.post('/questionArray', async (req, res) => {
 
-  try{
- 
+  try {
+
     const questionArray = await Questions.findAll({
       where: {
         category: req.body.categoryID
       },
       attributes: ['id']
-      
-    }) 
 
-  
-  res.status(200).json(questionArray);
+    })
 
-  } catch(err) {
-    res.status(500).json({message: 'unable to get max value'});
+
+    res.status(200).json(questionArray);
+
+  } catch (err) {
+    res.status(500).json({ message: 'unable to get max value' });
   }
 
 })
 
-  module.exports = router;
+module.exports = router;

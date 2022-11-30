@@ -16,7 +16,7 @@ header {
     background-image: linear-gradient(to bottom right, var(--lightPurple), var(--teal), var(--lightPurple));
 }
 
-body {
+.body2 {
     min-height: 100vh;
     background-image: url("../Assets/landscape-minimal-stars-cold-5k-817931564");
     background-size: cover;
@@ -33,7 +33,7 @@ form {
     border-radius: 25px;
 }
 
-footer {
+.footer2 {
     padding-right: 2%;
     text-align: right;
     position: sticky;
