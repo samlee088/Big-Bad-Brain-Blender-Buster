@@ -4,38 +4,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
   <link rel="stylesheet" href="/css/style.css">
-
   <title>Big-Bad-Brain-Blender</title>
 </head>
 
 <body class="body-main">
-
   <header class="display-flex justify-space-between align-center p-2">
-   
     <header>
       <h1 class="display-4 mainHeading">Welcome To Big-Bad-Brain-Blender</h1>
     </header>
 
-    <main>
+  <main>
 
-      {{#if loggedIn}}
+    {{#if loggedIn}}
       <nav>
         <button class="logoutBtn" id="logout">logout</button>
       </nav>
-      {{/if}}
-
-      {{{ body }}}
-    </main>
-    {{#if loggedIn}}
-    <script src="/js/logout.js"></script>
     {{/if}}
-    <footer class="footer2">
-      <h4>Brought to you by: Thair, Pat, Sam and Eddi <span>2022</span></h4>
-    </footer>
+
+    {{{ body }}}
+
+  </main>
+
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+  <footer class="footer2">
+    <h4>Brought to you by: Thair, Pat, Sam and Eddi <span>2022</span></h4>
+  </footer>
 
 </body>
-
-
 </html>

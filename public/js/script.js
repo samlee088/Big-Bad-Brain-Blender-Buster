@@ -30,7 +30,6 @@ const resultsRoute = async function resultsRender() {
     document.location.replace('/api/results');
 }
 
-
 document
     .querySelector('.startButton')
     .addEventListener('click', startQuiz);

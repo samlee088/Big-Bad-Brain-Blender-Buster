@@ -14,8 +14,6 @@
 
     <br>
 
-    
-
     {{#each results as |result| }}
     <div class="questionResult">Question: {{result.quiz.question}} </div>
     <div class="selectedAnswer">Selected: {{result.questionGuess}} </div>
@@ -30,7 +28,5 @@
     <h1> {{userData.userName}} {{userData.correctGuesses}} / {{userData.totalGuesses}}</h1>
     <br>
     {{/each}}
-
-
 
 </section>

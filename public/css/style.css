@@ -17,7 +17,6 @@ html {
     --vscode: #252934;
 }
 
-
 .body-main {
   display: flex;
   flex-wrap: wrap;
@@ -36,19 +35,6 @@ h1 {
   color: rgb(71, 2, 2);
 }
 
-/* h2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  color: rgb(55, 1, 1);
-  font-size: 3em;
-  margin: 0.67em 0;
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-} */
-
-
 form {
     margin: 5% auto;
     width: 50%;
@@ -60,7 +46,6 @@ form {
     padding-right: 2%;
     text-align: center;
     position: sticky;
-    /* top: 100%; */
     background-image: linear-gradient(to bottom right, var(--lightPurple), var(--teal));
     margin-top: auto;
     display: none;
@@ -69,24 +54,6 @@ form {
 span {
     color: var(--darkPurple);
 }
-
-/* .card2 {
-    width: 25%;
-} */
-
-/* .mainHeader {
-   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-size: 3em;
-} */
-
-/* h4 {
-  margin-top: 50%;
-  color: whitesmoke;
-} */
 
 label {
   display: flex;
@@ -218,8 +185,6 @@ label {
   font-size: 20px;
   border-radius: 5px;
   padding: 5px 10px;
-  /* margin-left: 35%;
-  margin-right: 35%; */
   padding: 20px;
   border-radius: 5px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));

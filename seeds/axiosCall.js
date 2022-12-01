@@ -2,7 +2,6 @@ const axios = require('axios');
 const sequelize = require('../config/connection');
 const Questions = require('../models/Questions')
 
-
 let difficulty = ['&difficulty=easy','&difficulty=hard'];
 let categories = ['arts_and_literature', 'film_and_tv', 'food_and_drink', 'general_knowledge', 'geography', 'history', 'music', 'science', 'society_and_culture','sport_and_leisure'];
 let urlQuestions = 'https://the-trivia-api.com/api/questions?limit=5&categories='
@@ -42,7 +41,6 @@ async function fetchQuestions() {
   }
   process.exit(0);
 }
-
 
 fetchQuestions();
 

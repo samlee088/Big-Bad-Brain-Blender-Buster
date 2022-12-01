@@ -2,8 +2,6 @@ const router = require('express').Router();
 const {Guesses, Questions, Users} = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-
 /* This is to query all of the results, and selected answers for all users to be rendered onto the results page. */
 router.get('/', async(req, res) => {
     try{
@@ -20,7 +18,6 @@ router.get('/', async(req, res) => {
             ]
         })
         
-
         /*Query the currently logged in user's information to render the results of the quiz. */
         const currentUserResults = await Users.findAll( {
             where: {
@@ -44,14 +41,12 @@ router.get('/', async(req, res) => {
         return obj;
         })
 
-
         /* Query all of the available saved users to render quiz results for all available users and scores */
         const allUsersSumResults = await Users.findAll( {
             include: [
                 Guesses
             ]
         })
-
 
         const sumRes = allUsersSumResults.map((result) => 
         result.get({plain:true}))
@@ -82,7 +77,6 @@ router.get('/', async(req, res) => {
     }
 })
 
-
 /* This is post data regarding the selection that the user made for the quiz */
 router.post('/', withAuth, async(req, res) =>  {
     try{    
@@ -98,7 +92,6 @@ router.post('/', withAuth, async(req, res) =>  {
     res.status(500).json('Unsuccessful with storing guess');
     }
 })
-
 
 /* This is to clear out the guesses for a individual user only. The guesses can only store 1 quiz at a time */
 router.delete('/', async(req,res) => {
@@ -116,6 +109,5 @@ router.delete('/', async(req,res) => {
         res.status(500).json(err);
     }
 })
-
 
 module.exports = router;

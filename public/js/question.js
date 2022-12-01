@@ -17,7 +17,6 @@ async function submitAnswer(event) {
     } else {
         correctGuess = 0
     }
-    
 
     /* Storing the users selection to later render with results */
     const response = await fetch(`/api/results`, {
