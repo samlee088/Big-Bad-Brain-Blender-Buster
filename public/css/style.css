@@ -17,10 +17,6 @@ html {
     --vscode: #252934;
 }
 
-/* header {
-    text-align: center;
-    background-image: linear-gradient(to bottom right, var(--lightPurple), var(--teal), var(--lightPurple));
-} */
 
 .body-main {
   display: flex;
@@ -40,7 +36,7 @@ h1 {
   color: rgb(71, 2, 2);
 }
 
-h2 {
+/* h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -50,7 +46,7 @@ h2 {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
-}
+} */
 
 
 form {
@@ -87,10 +83,10 @@ span {
   font-size: 3em;
 } */
 
-h4 {
+/* h4 {
   margin-top: 50%;
   color: whitesmoke;
-}
+} */
 
 label {
   display: flex;
@@ -193,6 +189,7 @@ label {
 .resultsPage {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   font-size: 28px;
   padding: 20px;
@@ -221,8 +218,8 @@ label {
   font-size: 20px;
   border-radius: 5px;
   padding: 5px 10px;
-  margin-left: 35%;
-  margin-right: 35%;
+  /* margin-left: 35%;
+  margin-right: 35%; */
   padding: 20px;
   border-radius: 5px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
@@ -247,4 +244,45 @@ label {
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+
+.allUserResults1 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.LastQuizResults {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #4d0099;
+}
+
+.mostRecentQuizResults {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepagebtn {
+  background-color: #5f6985;
+  padding: 10px;
+  border-radius: 50px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.logoutBtn {
+  border-radius: 10px;
+  background-color:#30374e;
+  padding: 3px;
+  color: #f10000;
 }
