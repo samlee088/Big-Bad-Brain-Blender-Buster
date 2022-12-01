@@ -1,23 +1,17 @@
-document.querySelector('.startButton').addEventListener('click', startQuiz);
-
-console.log('script javascript correctly linked');
 
 async function startQuiz() {    
-    console.log("start quiz function called");
 
     const categorySelection = document.querySelector('#categorySelect').value;
-    console.log(categorySelection);
-
     const difficultySelection = document.querySelector('#inputDifficulty').value;
-    console.log(difficultySelection);
 
+    /* Clear out the current quiz answers selected for the current user to start a new quiz */
     const clearGuesses = await fetch(`/api/results`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
     })
-
+    /* Query for the 1st question for the quiz based on category and difficulty */
     const getQuizData = await fetch(`/api/questions`, {
         method: 'POST',
         body: JSON.stringify({categorySelection,difficultySelection}),
@@ -27,13 +21,22 @@ async function startQuiz() {
     })
 
     const quizDataGrab = await getQuizData.json();
-    console.log(quizDataGrab);
 
     location.href = `/api/questions/${quizDataGrab}`;
     
 }
 
+const resultsRoute = async function resultsRender() {
+    document.location.replace('/api/results');
+}
 
+
+document
+    .querySelector('.startButton')
+    .addEventListener('click', startQuiz);
+document
+    .querySelector('#resultsButton')
+    .addEventListener('click', resultsRoute);
 
 
 

@@ -2,14 +2,35 @@
 
 <section class="resultsPage">
     
-    {{#each resultsArr as |userData|}}
-    <h1> {{userData.userName}} {{userData.correctGuesses}} / {{userData.totalGuesses}}</h1>
+    <input type="button" onclick="location.href='/homepage';" value="Go to Homepage" />
     <br>
+
+
+    <h2>Last Quiz Results</h2>
+    
+    {{#each currentQuizResultsArr as |currentQuiz|}}
+    <h3> {{currentQuiz.userName}} {{currentQuiz.correctGuesses}} / {{currentQuiz.totalGuesses}}</h3>
     {{/each}}
+
+    <br>
+
+    
 
     {{#each results as |result| }}
     <div class="questionResult">Question: {{result.quiz.question}} </div>
     <div class="selectedAnswer">Selected: {{result.questionGuess}} </div>
     <div class="correctAnswer">Correct Answer: {{result.quiz.correctAnswer}} </div>
     {{/each}}
+
+
+    <h2>All Users Results</h2>
+    <br>
+
+    {{#each resultsArr as |userData|}}
+    <h1> {{userData.userName}} {{userData.correctGuesses}} / {{userData.totalGuesses}}</h1>
+    <br>
+    {{/each}}
+
+
+
 </section>

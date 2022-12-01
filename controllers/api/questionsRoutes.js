@@ -4,115 +4,66 @@ const withAuth = require('../../utils/auth')
 
 
 
+/* This questions post method is to grab the lowest value for a category and difficulty setting from the questions database to pass through a starting point for the quiz */
 router.post('/', async (req, res) => {
   try {
-
-    console.log(req.body);
-
-
-    
-    // const minValue = await Questions.min("id", {
-    //   where: {
-    //     category: (req.body.categorySelection)
-    //   }
-    // })
-
-    // res.status(200).json(minValue);
-
-
-    // const minValue = await Questions.min("id", {
-    //   where: {
-    //     [Op.and] : [
-    //       {category: (req.body.categorySelection)},
-    //       {difficulty: (req.body.difficultySelection)}
-
-    //     ]
-        
-    //   }
-    // })
 
     const minValue = await Questions.findAll({
       where : {
         category: (req.body.categorySelection),
         difficulty: (req.body.difficultySelection)
       }
-    }
-    )
-
+    })
 
     const minValueResult = minValue.map((result) => result.get({plain:true}));
 
-    console.log(minValueResult);
-
     res.status(200).json(minValueResult[0].id);
-
-    console.log(req.body.categorySelection);
-    console.log(req.body.difficultySelection);
-    
-    // const questionsSearch = await Questions.findAll({
-    //   where: {
-    //     [Op.and] : [
-    //       {category: 'History'},
-    //       {difficulty: 'easy'}
-    //     ]
-    //   }
-    // })
-
-    // res.status(200).json(questionsSearch);
 
   } catch (err) {
     res.status(500).json(err);
   }
-
 });
 
 
-router.get('/:id', async (req, res) => {
-
+/* This is the routing to get to specific question for rendering */
+router.get('/:id', withAuth, async (req, res) => {
   try {
 
-    const quizData = await Questions.findByPk(req.params.id, {
-      attributes: {
-        // include: ['question', 'answerOne', 'answerTwo', 'answerThree', 'answerFour', 'correctAnswer'],
-        // exclude: ['category', 'createdAt', 'updatedAt']
-
-      }
-    })
+    const quizData = await Questions.findByPk(req.params.id, {})
 
     const quiz = quizData.get({ plain: true });
 
     res.render('quiz', {
       ...quiz,
       loggedIn: req.session.loggedIn,
-      // loggedIn: true
+     
     })
-    // res.status(200).json(quizData);
 
   } catch (err) {
     res.status(500).json(err);
   }
-
 })
 
-router.post('/questionArray', async (req, res) => {
 
+/* This post route works to get all id values of questions with the selected category and difficulty that was selected. This array is then passed through to determine the next question to render*/
+router.post('/questionArray', async (req, res) => {
   try {
 
     const questionArray = await Questions.findAll({
-      where: {
-        category: req.body.categoryID
+  
+      where : {
+        category: req.body.categoryID,
+        difficulty: req.body.difficultySelection
       },
       attributes: ['id']
 
     })
 
-
     res.status(200).json(questionArray);
 
   } catch (err) {
-    res.status(500).json({ message: 'unable to get max value' });
+    res.status(500).json({ message: 'unable to get questions array' });
   }
-
 })
 
 module.exports = router;

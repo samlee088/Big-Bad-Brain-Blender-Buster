@@ -1,24 +1,15 @@
 document.querySelectorAll('.selectedAnswer').forEach(e => e.addEventListener('click', submitAnswer));
 
-
-console.log('script javascript correctly linked');
-
-
 async function submitAnswer(event) {
     
+    /* Button attributes regarding information about the quiz to store for further use */
     const questionGuess = event.target.getAttribute('data-id');
-    console.log(questionGuess);
-
     const questionId = event.target.getAttribute('question-id');
-    console.log(questionId);
-
-    const categoryID = event.target.getAttribute('category-id');
-    console.log(categoryID);
-
     const correctAnswer = event.target.getAttribute('correctAnswer-id');
-    console.log(correctAnswer);
+    const categoryID = event.target.getAttribute('category-id');
+    const difficultySelection = event.target.getAttribute('difficulty-id');
 
-
+    /* Function to determine if a user selected the correct answer */
     let correctGuess;
 
     if(questionGuess == correctAnswer) {
@@ -28,7 +19,7 @@ async function submitAnswer(event) {
     }
     
 
-    
+    /* Storing the users selection to later render with results */
     const response = await fetch(`/api/results`, {
         method: 'POST',
         body: JSON.stringify({questionGuess, questionId, correctGuess}),
@@ -37,25 +28,21 @@ async function submitAnswer(event) {
         },
     })
 
-    const responseresults = await response.json();
-    console.log(responseresults);
-    
+    /* Method to query all available questions based on category and difficulty to determine the next question to render, or end of quiz */
     const allSelectedCategoryQuestionIds = await fetch('/api/questions/questionArray', {
         method: 'POST',
-        body: JSON.stringify({categoryID}),
+        body: JSON.stringify({categoryID, difficultySelection}),
         headers: {
             'Content-Type': 'application/json',
         },
     })
 
     let currentAllQuestionList = await allSelectedCategoryQuestionIds.json();
-    console.log(currentAllQuestionList);
 
+    /* Query to determine the next question based on the returned array of the previous fetch/post of available questions based on the current category and difficulty selection */
     async function queryNextQuestion(questionID, questionArray)  {
 
         for (let i=0; i<questionArray.length; i++) {
-
-            console.log(questionArray[i].id);
 
             if (i == (questionArray.length -1)) {
 
@@ -75,8 +62,7 @@ async function submitAnswer(event) {
     
     let determineNextQuestion = await queryNextQuestion(questionId, currentAllQuestionList);
 
-    console.log(determineNextQuestion);
-
+    /* If the last question was answered, render the results paged. Otherwise render the next quiz question */
     if (determineNextQuestion == 'lastQuestion') {
 
         document.location.replace('/api/results');
@@ -87,8 +73,6 @@ async function submitAnswer(event) {
 
     }
 
-
-    
 }
 
 
