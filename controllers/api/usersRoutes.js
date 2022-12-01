@@ -1,22 +1,11 @@
 const router = require('express').Router();
-const User = require('../../models/User')
+const Users = require('../../models/Users')
 
-router.get('/', async (req, res) => {
-
-  try {
-    const getUserData = await User.findAll({});
-
-    res.status(200).json(getUserData);
-
-  } catch (err) {
-    res.status(500).json(err);
-  }
-})
 
 router.post('/login', async (req, res) => {
   try {
     console.log('login test message');
-    const userData = await User.findOne({ where: { userName: req.body.userName } });
+    const userData = await Users.findOne({ where: { userName: req.body.userName } });
     console.log(userData);
 
     if (!userData) {
@@ -37,7 +26,7 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.userId = userData.id;
+      req.session.user_id = userData.id;
       req.session.loggedIn = true;
 
       res.json({ user: userData, message: 'You are now logged in!' });
@@ -49,14 +38,13 @@ router.post('/login', async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
 
   try {
-    console.log('test for new user post');
-    const userData = await User.create(req.body);
+    const userData = await Users.create(req.body);
 
     req.session.save(() => {
-      req.session.userId = userData.id;
+      req.session.user_id = userData.id;
       req.session.loggedIn = true;
 
       res.status(200).json(userData);

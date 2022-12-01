@@ -1,55 +1,48 @@
 document.querySelectorAll('.selectedAnswer').forEach(e => e.addEventListener('click', submitAnswer));
 
-
-console.log('script javascript correctly linked');
-
-
 async function submitAnswer(event) {
     
+    /* Button attributes regarding information about the quiz to store for further use */
     const questionGuess = event.target.getAttribute('data-id');
-    console.log(questionGuess);
-
-    const question_id = event.target.getAttribute('question-id');
-    console.log(question_id);
-
+    const questionId = event.target.getAttribute('question-id');
+    const correctAnswer = event.target.getAttribute('correctAnswer-id');
     const categoryID = event.target.getAttribute('category-id');
-    console.log(categoryID);
+    const difficultySelection = event.target.getAttribute('difficulty-id');
 
+    /* Function to determine if a user selected the correct answer */
+    let correctGuess;
 
+    if(questionGuess == correctAnswer) {
+        correctGuess = 1
+    } else {
+        correctGuess = 0
+    }
+    
+
+    /* Storing the users selection to later render with results */
     const response = await fetch(`/api/results`, {
         method: 'POST',
-        body: JSON.stringify({questionGuess, question_id}),
+        body: JSON.stringify({questionGuess, questionId, correctGuess}),
         headers: {
             'Content-Type': 'application/json',
         },
     })
 
-    const responseresults = await response.json();
-    console.log(responseresults);
-    
-    // const maxQuestionId = await fetch('/api/maximum', {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    // })
-    
+    /* Method to query all available questions based on category and difficulty to determine the next question to render, or end of quiz */
     const allSelectedCategoryQuestionIds = await fetch('/api/questions/questionArray', {
         method: 'POST',
-        body: JSON.stringify({categoryID}),
+        body: JSON.stringify({categoryID, difficultySelection}),
         headers: {
             'Content-Type': 'application/json',
         },
     })
 
     let currentAllQuestionList = await allSelectedCategoryQuestionIds.json();
-    console.log(currentAllQuestionList);
 
+    /* Query to determine the next question based on the returned array of the previous fetch/post of available questions based on the current category and difficulty selection */
     async function queryNextQuestion(questionID, questionArray)  {
 
         for (let i=0; i<questionArray.length; i++) {
-
-            console.log(questionArray[i].id);
 
             if (i == (questionArray.length -1)) {
 
@@ -61,18 +54,15 @@ async function submitAnswer(event) {
 
                 let nextQuestionIdentity = questionArray[i+1].id
 
-                // let nextQuestionIdentity = questionArray[i+1].id == undefined ? questionArray[i+1].id : 'lastQuestion';
-
                 return nextQuestionIdentity
             }
             
         }
     }
     
-    let determineNextQuestion = await queryNextQuestion(question_id, currentAllQuestionList);
+    let determineNextQuestion = await queryNextQuestion(questionId, currentAllQuestionList);
 
-    console.log(determineNextQuestion);
-
+    /* If the last question was answered, render the results paged. Otherwise render the next quiz question */
     if (determineNextQuestion == 'lastQuestion') {
 
         document.location.replace('/api/results');
@@ -82,17 +72,6 @@ async function submitAnswer(event) {
         document.location.replace(`/api/questions/${determineNextQuestion}`)
 
     }
-    // const maxQuestionIdReturn = await maxQuestionId.json();
-
-    // console.log(maxQuestionId);
-    // console.log(maxQuestionIdReturn);
-
-    // if(question_id >= maxQuestionIdReturn) {
-    //     document.location.replace(`/api/results`)
-    // } else {
-    //     const next_question_id = Number(question_id) + 1
-    //     document.location.replace(`/api/questions/${next_question_id}`);
-    // }
 
 }
 

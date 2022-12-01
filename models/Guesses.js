@@ -18,7 +18,7 @@ Guesses.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        question_id: {
+        questionId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -26,13 +26,17 @@ Guesses.init(
                 key: 'id'
             }
         },
-        // user_id: {
-        //     type: DataTypes.STRING,
-        //     references: {
-        //         model: 'user',
-        //         key:'id'
-        //     }
-        // }
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'users',
+                key:'id'
+            },
+        },
+        correctGuess: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     },
     {
         sequelize,

@@ -3,15 +3,8 @@ const sequelize = require('../config/connection');
 
 
 
-class Questions extends Model{
+class Questions extends Model{}
 
-
-}
-
-
-/// rename into questions
-
-// create quiz ids, category ids 
 
 Questions.init(
     {
@@ -50,6 +43,10 @@ Questions.init(
             allowNull: false,
         },
         category: {
+            type: DataTypes.STRING,
+            allowNull:false
+        },
+        difficulty: {
             type: DataTypes.STRING,
             allowNull:false
         },
