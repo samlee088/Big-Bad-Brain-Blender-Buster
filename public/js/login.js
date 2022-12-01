@@ -1,5 +1,4 @@
 
-
 const loginFormHandler = async (event) => {
 
   const userName = document.querySelector('#userName-login').value.trim();
@@ -20,15 +19,11 @@ const loginFormHandler = async (event) => {
       alert('Failed to log in');
     }
   }
-  // event.preventDefault();
 };
 
 const sign_up_button = async function sign_up_route() {
-
   document.location.replace(`/signup`)
-
 }
-
 
 document
   .querySelector('.sign_up')

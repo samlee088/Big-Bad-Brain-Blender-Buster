@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const Users = require('../../models/Users')
 
-
 router.post('/login', async (req, res) => {
   try {
     console.log('login test message');
@@ -37,7 +36,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-
 router.post('/signup', async (req, res) => {
 
   try {
@@ -52,7 +50,6 @@ router.post('/signup', async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-
 })
 
 router.post('/logout', (req, res) => {
