@@ -2,14 +2,14 @@
 
 <section class="resultsPage">
     
-    <input type="button" onclick="location.href='/homepage';" value="Go to Homepage" />
+    <input class="homepagebtn" type="button" onclick="location.href='/homepage';" value="Go to Homepage" />
     <br>
 
 
-    <h2>Last Quiz Results</h2>
+    <h2 class="LastQuizResults">Last Quiz Results</h2>
     
     {{#each currentQuizResultsArr as |currentQuiz|}}
-    <h3> {{currentQuiz.userName}} {{currentQuiz.correctGuesses}} / {{currentQuiz.totalGuesses}}</h3>
+    <h3 class="mostRecentQuizResults"> {{currentQuiz.userName}} {{currentQuiz.correctGuesses}} / {{currentQuiz.totalGuesses}}</h3>
     {{/each}}
 
     <br>
@@ -23,7 +23,7 @@
     {{/each}}
 
 
-    <h2>All Users Results</h2>
+    <h2 class="allUserResults1">All Users Results</h2>
     <br>
 
     {{#each resultsArr as |userData|}}
